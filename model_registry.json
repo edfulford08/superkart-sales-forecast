@@ -1,0 +1,13 @@
+[
+ {
+  "model_version": "1.0",
+  "model_name": "Random Forest (tuned)",
+  "file": "superkart_sales_prediction_model_v1_0.joblib",
+  "trained_at": "2026-10-10T00:33:28+00:00",
+  "test_rmse": 280.044315662406,
+  "test_r2": 0.9312677962220517,
+  "status": "production",
+  "note": "baseline champion of the grid search",
+  "sha256": "9a516eb08ea6e71431cae32c3779e6d816b8b8fbee5ea65e9f69515a178cf3bd"
+ }
+]
