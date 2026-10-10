@@ -7,6 +7,7 @@ cd "$(dirname "$0")"
 fail() { echo "ERROR: $1" >&2; exit 1; }
 
 command -v docker >/dev/null 2>&1 || fail "docker is not installed or not on the PATH"
+for _ in $(seq 1 45); do docker info >/dev/null 2>&1 && break; sleep 2; done   # a new Codespace needs a moment to start Docker
 docker info >/dev/null 2>&1 || fail "the Docker daemon is not running"
 [ -f backend/Dockerfile ] && [ -f frontend/Dockerfile ] || fail "run this script from the repository root (backend/ and frontend/ not found)"
 ls backend/*.joblib >/dev/null 2>&1 || fail "the model file (.joblib) is missing from the backend folder"
