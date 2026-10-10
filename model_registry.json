@@ -3,7 +3,7 @@
   "model_version": "1.0",
   "model_name": "Random Forest (tuned)",
   "file": "superkart_sales_prediction_model_v1_0.joblib",
-  "trained_at": "2026-10-10T11:56:17+00:00",
+  "trained_at": "2026-10-10T13:59:54+00:00",
   "test_rmse": 280.044315662406,
   "test_r2": 0.9312677962220517,
   "status": "production",
