@@ -68,7 +68,7 @@
         }
       ],
       "n_iter": 30,
-      "seconds": 196.3
+      "seconds": 198.3
     },
     "XGBoost": {
       "best_params": {
@@ -149,7 +149,7 @@
         }
       ],
       "n_iter": 30,
-      "seconds": 14.1
+      "seconds": 13.8
     }
   }
 }
