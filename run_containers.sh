@@ -22,7 +22,7 @@ docker build -t superkart-frontend ./frontend || fail "the frontend image did no
 # Shared network so the frontend can reach the backend by its container name
 docker network inspect superkart-app-network >/dev/null 2>&1 || docker network create superkart-app-network
 
-# Remove containers from an earlier run so that the names and ports are free
+# Remove containers left over from a previous run so that the names and ports are free
 docker rm -f backend frontend >/dev/null 2>&1 || true
 
 # An optional API key is passed to both containers (the frontend sends it to the backend)
@@ -45,5 +45,16 @@ wait_for() {
 wait_for "Backend" "http://localhost:7860/" backend || fail "backend health check failed"
 wait_for "Frontend" "http://localhost:8501/_stcore/health" frontend || fail "frontend health check failed"
 
+# In a Codespace, make the forwarded ports public so that a browser or a script can reach them without a login.
+# A private port only accepts the Codespace's own token, so the notebook's online check needs public ports.
+if [ -n "${CODESPACE_NAME:-}" ] && command -v gh >/dev/null 2>&1; then
+  ports_public=no
+  for _ in $(seq 1 12); do
+    if gh codespace ports visibility 7860:public 8501:public -c "$CODESPACE_NAME" >/dev/null 2>&1; then ports_public=yes; break; fi
+    sleep 10
+  done
+  if [ "$ports_public" = yes ]; then echo "Ports 7860 and 8501 are public"; else echo "Could not set the ports to public automatically: in the PORTS tab set their visibility to Public." >&2; fi
+fi
+
 docker ps
-echo "Both containers are running. In the PORTS tab make ports 7860 and 8501 Public, then open the 8501 address."
+echo "Both containers are running. If the ports are not public yet, set ports 7860 and 8501 to Public in the PORTS tab, then open the 8501 address."
