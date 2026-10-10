@@ -34,7 +34,7 @@ docker run -d --name frontend --network superkart-app-network -p 8501:8501 super
 ```
 
 A Codespace created from this repository runs the script automatically (see `.devcontainer/devcontainer.json`; progress is in `run_containers.log`).
-Make ports 7860 and 8501 **Public** in the PORTS tab and open the address of port 8501.
+The script sets ports 7860 and 8501 to **Public** by itself; if that fails, set them to Public in the PORTS tab. Open the address of port 8501.
 Stop the containers with `docker stop backend frontend` and stop the Codespace when you are finished.
 
 ## API
