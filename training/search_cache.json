@@ -24,7 +24,7 @@
         },
         {
           "rank": 2,
-          "rmse": 281.05652882105005,
+          "rmse": 281.0565288210501,
           "params": {
             "n_estimators": 100,
             "min_samples_leaf": 2,
@@ -149,7 +149,7 @@
         }
       ],
       "n_iter": 30,
-      "seconds": 13.8
+      "seconds": 14.1
     }
   }
 }
