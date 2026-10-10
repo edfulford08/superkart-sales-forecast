@@ -3,7 +3,7 @@
  "model_name": "Random Forest (tuned)",
  "model_file": "superkart_sales_prediction_model_v1_0.joblib",
  "file_sha256": "9a516eb08ea6e71431cae32c3779e6d816b8b8fbee5ea65e9f69515a178cf3bd",
- "trained_at": "2026-10-10T11:56:17+00:00",
+ "trained_at": "2026-10-10T13:59:54+00:00",
  "seed": 42,
  "target": "Product_Store_Sales_Total",
  "features": [
