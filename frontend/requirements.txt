@@ -1,3 +1,4 @@
-streamlit==1.43.2
-requests==2.32.3
-pandas==2.2.2
+# Versions tested in the notebook (written by the notebook)
+streamlit==1.65.0
+requests==2.32.4
+pandas==2.2.3
