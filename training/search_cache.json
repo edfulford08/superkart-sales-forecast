@@ -24,7 +24,7 @@
         },
         {
           "rank": 2,
-          "rmse": 281.0565288210501,
+          "rmse": 281.05652882105005,
           "params": {
             "n_estimators": 100,
             "min_samples_leaf": 2,
@@ -57,7 +57,7 @@
         },
         {
           "rank": 5,
-          "rmse": 281.47517181317477,
+          "rmse": 281.4751718131747,
           "params": {
             "n_estimators": 300,
             "min_samples_leaf": 2,
@@ -68,7 +68,7 @@
         }
       ],
       "n_iter": 30,
-      "seconds": 195.6
+      "seconds": 196.3
     },
     "XGBoost": {
       "best_params": {
@@ -149,7 +149,7 @@
         }
       ],
       "n_iter": 30,
-      "seconds": 13.6
+      "seconds": 13.8
     }
   }
 }
