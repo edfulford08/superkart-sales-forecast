@@ -4,6 +4,13 @@ import pandas as pd
 import requests
 import streamlit as st
 
+# Newer Streamlit versions replace use_container_width=True with width="stretch"; use whichever the installed version understands
+try:
+    _streamlit_version = tuple(int(part) for part in st.__version__.split(".")[:2])
+except ValueError:
+    _streamlit_version = (0, 0)
+STRETCH = {"width": "stretch"} if _streamlit_version >= (1, 50) else {"use_container_width": True}
+
 # Inside the Docker network the backend container is reachable by its container name "backend".
 # Set BACKEND_URL to use another address (for example the forwarded URL) and API_KEY if the backend requires one.
 BACKEND_URL = os.environ.get("BACKEND_URL", "http://backend:7860").rstrip("/")
@@ -138,13 +145,13 @@ with tab_batch:
             try:
                 result = pd.DataFrame(response.json()["predictions"])
                 st.success("Predictions completed successfully for " + str(len(result)) + " rows.")
-                st.dataframe(result, use_container_width=True)
+                st.dataframe(result, **STRETCH)
                 st.download_button("Download predictions", result.to_csv(index=False), "superkart_forecasts.csv", "text/csv")
                 if "Store_Id" in result.columns:
                     st.subheader("Forecast total by store")
                     rollup = result.groupby("Store_Id")["Predicted_Product_Store_Sales_Total"].sum()
                     st.bar_chart(rollup)
-                    st.dataframe(rollup.round(2).rename("Forecast total").to_frame(), use_container_width=True)
+                    st.dataframe(rollup.round(2).rename("Forecast total").to_frame(), **STRETCH)
             except (KeyError, ValueError) as err:
                 st.error("The backend returned an unexpected response: " + str(err))
         else:
@@ -158,7 +165,7 @@ with tab_info:
         info = response.json()
         st.write("Model version: **" + str(info.get("model_version")) + "** (" + str(info.get("model_name")) + ")")
         if "metrics" in info:
-            st.dataframe(pd.Series(info["metrics"]).rename("Value").to_frame(), use_container_width=True)
+            st.dataframe(pd.Series(info["metrics"]).rename("Value").to_frame(), **STRETCH)
         if "interval" in info:
             st.write("Forecast range: " + str(info["interval"].get("coverage", "")) + " coverage, estimated by split conformal prediction per store type.")
     else:
