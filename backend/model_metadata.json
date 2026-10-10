@@ -1,0 +1,288 @@
+{
+ "model_version": "1.0",
+ "model_name": "Random Forest (tuned)",
+ "model_file": "superkart_sales_prediction_model_v1_0.joblib",
+ "file_sha256": "9a516eb08ea6e71431cae32c3779e6d816b8b8fbee5ea65e9f69515a178cf3bd",
+ "trained_at": "2026-10-10T00:33:28+00:00",
+ "seed": 42,
+ "target": "Product_Store_Sales_Total",
+ "features": [
+  "Product_Weight",
+  "Product_Allocated_Area",
+  "Product_MRP",
+  "Store_Age",
+  "Product_Sugar_Content",
+  "Product_Type",
+  "Store_Size",
+  "Store_Location_City_Type",
+  "Store_Type",
+  "Product_Id_Prefix"
+ ],
+ "reference_year": 2026,
+ "metrics": {
+  "test_rmse": 280.044315662406,
+  "test_mae": 105.5460214390839,
+  "test_r2": 0.9312677962220517,
+  "test_mape": 0.03785205724730896,
+  "cv_rmse": 280.83919706821246,
+  "baseline_mae_out_of_fold": 104.69838154647073
+ },
+ "data": {
+  "rows": 8763,
+  "train_rows": 7010,
+  "test_rows": 1753,
+  "sha256": "752a7c78645be63e5ff26bb00c8ca417e76c640cde256a6f5c2b925190f89687"
+ },
+ "libraries": {
+  "numpy": "2.1.3",
+  "pandas": "2.2.3",
+  "scikit-learn": "1.6.1",
+  "scipy": "1.16.3",
+  "xgboost": "3.4.1",
+  "joblib": "1.6.0",
+  "flask": "3.1.3",
+  "Werkzeug": "3.1.9",
+  "gunicorn": "26.2.0",
+  "streamlit": "1.65.0",
+  "requests": "2.32.4",
+  "matplotlib": "3.10.0",
+  "seaborn": "0.13.2",
+  "python": "3.13.15"
+ },
+ "schema": {
+  "categories": {
+   "Product_Sugar_Content": [
+    "Low Sugar",
+    "No Sugar",
+    "Regular"
+   ],
+   "Product_Type": [
+    "Baking Goods",
+    "Breads",
+    "Breakfast",
+    "Canned",
+    "Dairy",
+    "Frozen Foods",
+    "Fruits and Vegetables",
+    "Hard Drinks",
+    "Health and Hygiene",
+    "Household",
+    "Meat",
+    "Others",
+    "Seafood",
+    "Snack Foods",
+    "Soft Drinks",
+    "Starchy Foods"
+   ],
+   "Store_Size": [
+    "High",
+    "Medium",
+    "Small"
+   ],
+   "Store_Location_City_Type": [
+    "Tier 1",
+    "Tier 2",
+    "Tier 3"
+   ],
+   "Store_Type": [
+    "Departmental Store",
+    "Food Mart",
+    "Supermarket Type1",
+    "Supermarket Type2"
+   ]
+  },
+  "product_id_prefixes": [
+   "DR",
+   "FD",
+   "NC"
+  ],
+  "numeric": {
+   "Product_Weight": {
+    "observed_min": 4.0,
+    "observed_max": 22.0,
+    "min": 0.0,
+    "max": 31.0
+   },
+   "Product_Allocated_Area": {
+    "observed_min": 0.004,
+    "observed_max": 0.298,
+    "min": 0.0,
+    "max": 0.44499999999999995
+   },
+   "Product_MRP": {
+    "observed_min": 31.0,
+    "observed_max": 266.0,
+    "min": 0.0,
+    "max": 383.5
+   },
+   "Store_Establishment_Year": {
+    "observed_min": 1987.0,
+    "observed_max": 2009.0,
+    "min": 1950.0,
+    "max": 2026.0
+   }
+  },
+  "defaults": {
+   "Product_Weight": 12.66,
+   "Product_Allocated_Area": 0.056,
+   "Product_MRP": 146.74,
+   "Store_Establishment_Year": 2009.0,
+   "Product_Sugar_Content": "Low Sugar",
+   "Product_Type": "Fruits and Vegetables",
+   "Store_Size": "Medium",
+   "Store_Location_City_Type": "Tier 2",
+   "Store_Type": "Supermarket Type2",
+   "Product_Id": "FD6114"
+  }
+ },
+ "interval": {
+  "global_half_width": 197.21831118941464,
+  "half_width": {
+   "Departmental Store": 383.55420120129656,
+   "Food Mart": 292.0158921320349,
+   "Supermarket Type1": 236.0459408101533,
+   "Supermarket Type2": 133.06871035353515
+  },
+  "coverage": 0.9,
+  "method": "split conformal prediction on out-of-fold residuals, per store type"
+ },
+ "drift_reference": {
+  "n_rows": 7010,
+  "numeric": {
+   "Product_Weight": {
+    "edges": [
+     9.829,
+     10.798000000000002,
+     11.47,
+     12.09,
+     12.655000000000001,
+     13.23,
+     13.86,
+     14.5,
+     15.5
+    ],
+    "shares": [
+     0.1,
+     0.1,
+     0.09985734664764621,
+     0.09971469329529244,
+     0.10042796005706134,
+     0.09885877318116976,
+     0.10057061340941512,
+     0.09942938659058488,
+     0.10057061340941512,
+     0.10057061340941512
+    ]
+   },
+   "Product_Allocated_Area": {
+    "edges": [
+     0.018,
+     0.027,
+     0.035,
+     0.044,
+     0.055,
+     0.07,
+     0.085,
+     0.11,
+     0.14
+    ],
+    "shares": [
+     0.0971469329529244,
+     0.10014265335235378,
+     0.09044222539229672,
+     0.1049928673323823,
+     0.10028530670470756,
+     0.1042796005706134,
+     0.09486447931526391,
+     0.10770328102710414,
+     0.09843081312410841,
+     0.10171184022824536
+    ]
+   },
+   "Product_MRP": {
+    "edges": [
+     107.66300000000001,
+     121.438,
+     131.02700000000002,
+     139.39,
+     146.585,
+     154.024,
+     162.513,
+     172.90400000000002,
+     186.90200000000002
+    ],
+    "shares": [
+     0.1,
+     0.1,
+     0.1,
+     0.09985734664764621,
+     0.10014265335235378,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1
+    ]
+   }
+  },
+  "categorical": {
+   "Product_Sugar_Content": {
+    "Low Sugar": 0.5611982881597718,
+    "Regular": 0.26861626248216836,
+    "No Sugar": 0.1701854493580599
+   },
+   "Product_Type": {
+    "Fruits and Vegetables": 0.14407988587731813,
+    "Snack Foods": 0.13081312410841656,
+    "Frozen Foods": 0.09472182596291012,
+    "Dairy": 0.08830242510699002,
+    "Household": 0.08373751783166905,
+    "Baking Goods": 0.08359486447931526,
+    "Canned": 0.07845934379457917,
+    "Meat": 0.07118402282453638,
+    "Health and Hygiene": 0.06861626248216833,
+    "Soft Drinks": 0.05977175463623395,
+    "Breads": 0.022396576319543508,
+    "Hard Drinks": 0.021112696148359488,
+    "Others": 0.01783166904422254,
+    "Starchy Foods": 0.015121255349500713,
+    "Breakfast": 0.012268188302425107,
+    "Seafood": 0.007988587731811698
+   },
+   "Store_Size": {
+    "Medium": 0.6914407988587732,
+    "High": 0.17960057061340942,
+    "Small": 0.1289586305278174
+   },
+   "Store_Location_City_Type": {
+    "Tier 2": 0.7169757489300999,
+    "Tier 1": 0.15406562054208273,
+    "Tier 3": 0.1289586305278174
+   },
+   "Store_Type": {
+    "Supermarket Type2": 0.5373751783166905,
+    "Supermarket Type1": 0.17960057061340942,
+    "Departmental Store": 0.15406562054208273,
+    "Food Mart": 0.1289586305278174
+   },
+   "Product_Id_Prefix": {
+    "FD": 0.7489300998573466,
+    "NC": 0.1701854493580599,
+    "DR": 0.08088445078459344
+   }
+  }
+ },
+ "retraining_policy": {
+  "max_mae_ratio": 1.25,
+  "max_age_days": 90
+ },
+ "promotion": {
+  "promoted": false,
+  "rule": {
+   "min_gain_pct": 1.0,
+   "alpha": 0.05,
+   "max_model_mb": 60
+  },
+  "champion": "Random Forest (tuned)"
+ }
+}
