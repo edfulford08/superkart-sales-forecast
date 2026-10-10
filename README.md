@@ -12,6 +12,7 @@ Two-container application that forecasts the total sales revenue of a product in
 - `tests/` - automated tests (`python -m unittest discover -s tests -v`)
 - `model_registry.json` - every model version with its status, metrics and file fingerprint
 - `run_containers.sh` - builds both images, creates the Docker network, and starts both containers
+- `.devcontainer/devcontainer.json` - makes a Codespace install Docker, forward ports 7860 and 8501 and start both containers by itself
 - `.github/workflows/ci.yml` - tests, dependency audit and Docker build on every push (uploaded when the token has the `workflow` scope)
 
 ## Run in a GitHub Codespace
@@ -32,6 +33,7 @@ docker run -d --name backend --network superkart-app-network -p 7860:7860 superk
 docker run -d --name frontend --network superkart-app-network -p 8501:8501 superkart-frontend
 ```
 
+A Codespace created from this repository runs the script automatically (see `.devcontainer/devcontainer.json`; progress is in `run_containers.log`).
 Make ports 7860 and 8501 **Public** in the PORTS tab and open the address of port 8501.
 Stop the containers with `docker stop backend frontend` and stop the Codespace when you are finished.
 
