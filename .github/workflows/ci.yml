@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install the backend dependencies
+        run: pip install -r backend/requirements.txt
+      - name: Run the automated tests
+        run: python -m unittest discover -s tests -v
+      - name: Audit the dependencies for known vulnerabilities
+        run: |
+          pip install pip-audit
+          pip-audit -r backend/requirements.txt -r frontend/requirements.txt --no-deps --disable-pip
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the backend image
+        run: docker build -t superkart-backend ./backend
+      - name: Build the frontend image
+        run: docker build -t superkart-frontend ./frontend
