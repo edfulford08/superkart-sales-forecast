@@ -1,0 +1,25 @@
+{
+  "name": "SuperKart forecast",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "forwardPorts": [
+    7860,
+    8501
+  ],
+  "portsAttributes": {
+    "7860": {
+      "label": "Flask API",
+      "onAutoForward": "notify"
+    },
+    "8501": {
+      "label": "Streamlit app",
+      "onAutoForward": "notify"
+    }
+  },
+  "postStartCommand": "nohup bash run_containers.sh > run_containers.log 2>&1 &"
+}
